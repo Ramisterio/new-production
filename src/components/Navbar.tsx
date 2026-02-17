@@ -91,14 +91,14 @@ export default function Navbar() {
       </div>
 
       <div className="border-b border-white/10">
-        <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
+        <nav className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4 min-w-0">
           <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/zaikest-logo1.png"
               alt="Zaikest"
-              width={96}
-              height={28}
-              className="object-contain"
+              width={88}
+              height={26}
+              className="object-contain sm:w-24 sm:h-7 scale-110 sm:scale-125 lg:scale-150 origin-left"
             />
           </Link>
 
@@ -121,19 +121,20 @@ export default function Navbar() {
             />
           </form>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 shrink-0">
             {isLoggedIn ? (
-              <div className="relative">
+              <div className="relative min-w-0">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-1 text-sm font-semibold text-white bg-white/10 border border-white/20 rounded-full px-4 py-2 hover:bg-white/20 transition"
+                  className="flex items-center justify-center sm:justify-start gap-1 text-sm font-semibold text-white bg-white/10 border border-white/20 rounded-full h-10 w-10 sm:w-auto sm:px-4 py-2 hover:bg-white/20 transition max-w-[9rem] sm:max-w-none"
                 >
-                  {user.name}
-                  <ChevronDown size={14} />
+                  <User size={17} className="sm:hidden" />
+                  <span className="hidden sm:inline max-w-[8rem] truncate">{user.name}</span>
+                  <ChevronDown size={14} className="hidden sm:inline" />
                 </button>
 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-lg border border-[#f1dede] overflow-hidden text-[#1a1a1a]">
+                  <div className="absolute left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-0 mt-2 w-[min(16rem,calc(100vw-1rem))] sm:w-52 bg-white rounded-2xl shadow-lg border border-[#f1dede] overflow-hidden text-[#1a1a1a] z-[60]">
                     <Link href="/profile" className="block px-4 py-3 hover:bg-red-50">
                       Profile
                     </Link>
@@ -156,7 +157,7 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={() => setOpenLogin(true)}
-                className="flex items-center gap-2 text-sm font-semibold text-white bg-white/10 border border-white/20 rounded-full px-3 py-2 hover:bg-white/20 transition"
+                className="flex items-center justify-center gap-2 text-sm font-semibold text-white bg-white/10 border border-white/20 rounded-full h-10 w-10 sm:w-auto sm:px-3 py-2 hover:bg-white/20 transition"
                 aria-label="Open login"
               >
                 <User size={18} />
@@ -166,7 +167,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setCartOpen(true)}
-              className="relative flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400 text-green-950 shadow hover:bg-amber-300 transition"
+              className="relative flex items-center justify-center gap-2 h-10 w-10 sm:w-auto sm:px-4 py-2 rounded-full bg-amber-400 text-green-950 shadow hover:bg-amber-300 transition"
               aria-label="Open cart"
             >
               <ShoppingCart size={18} />
@@ -180,7 +181,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full border border-white/20 bg-white/10"
+              className="lg:hidden h-10 w-10 flex items-center justify-center rounded-full border border-white/20 bg-white/10"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -214,7 +215,7 @@ export default function Navbar() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-white/10 px-4 py-4 space-y-4">
+        <div className="lg:hidden border-b border-white/10 px-3 sm:px-4 py-4 space-y-4">
           <form onSubmit={handleSearchSubmit} className="relative">
             <input
               type="text"
@@ -229,7 +230,7 @@ export default function Navbar() {
             />
           </form>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
             {categories.length === 0 ? (
               <span className="text-sm text-white/70">Loading categories...</span>
             ) : (
@@ -237,7 +238,7 @@ export default function Navbar() {
                 <Link
                   key={cat}
                   href={`/products?category=${encodeURIComponent(cat)}`}
-                  className="block text-center font-semibold text-white bg-white/10 border border-white/20 px-4 py-2 rounded-full"
+                  className="block text-center font-semibold text-white bg-white/10 border border-white/20 px-4 py-2 rounded-full truncate min-h-10"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {cat}
