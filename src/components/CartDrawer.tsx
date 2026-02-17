@@ -25,21 +25,21 @@ export default function CartDrawer({
       />
 
       <aside
-        className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl transition-transform flex flex-col ${
+        className={`absolute right-0 top-0 h-full w-full max-w-md bg-gray-100 shadow-2xl transition-transform flex flex-col ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-5 border-b border-green-100 shrink-0">
-          <div className="flex items-center gap-2 text-green-950 font-semibold">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-300 bg-gray-100 shrink-0">
+          <div className="flex items-center gap-2 text-gray-900 font-semibold">
             <ShoppingBag size={18} />
             Your Cart
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full border border-green-100 hover:border-green-300 transition"
+            className="p-2 rounded-full border border-gray-400 hover:border-gray-600 hover:bg-gray-200 transition"
             aria-label="Close cart"
           >
-            <X size={18} />
+            <X size={18} className="text-black" />
           </button>
         </div>
 
@@ -53,15 +53,15 @@ export default function CartDrawer({
               {cart.map((item) => (
                 <div
                   key={item._id}
-                  className="flex items-center justify-between gap-4 border border-green-100 rounded-2xl p-3"
+                  className="flex items-center justify-between gap-4 border border-gray-400 bg-gray-200 rounded-2xl p-3"
                 >
                   <div className="flex-1">
-                    <p className="font-semibold text-green-950">{item.name}</p>
-                    <p className="text-sm text-[#5f6f61]">PKR {item.price}</p>
+                    <p className="font-semibold text-gray-900">{item.name}</p>
+                    <p className="text-sm text-gray-700">PKR {item.price}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => decreaseQuantity(item._id)}
-                        className="w-7 h-7 rounded-full border border-green-100 text-black flex items-center justify-center hover:bg-green-700 hover:text-white transition"
+                        className="w-7 h-7 rounded-full border border-gray-400 bg-gray-100 text-gray-900 flex items-center justify-center hover:bg-gray-700 hover:text-white transition"
                         aria-label="Decrease quantity"
                       >
                         <Minus size={14} />
@@ -71,7 +71,7 @@ export default function CartDrawer({
                       </span>
                       <button
                         onClick={() => increaseQuantity(item._id)}
-                        className="w-7 h-7 rounded-full border border-green-100 text-black flex items-center justify-center hover:bg-green-700 hover:text-white transition"
+                        className="w-7 h-7 rounded-full border border-gray-400 bg-gray-100 text-gray-900 flex items-center justify-center hover:bg-gray-700 hover:text-white transition"
                         aria-label="Increase quantity"
                       >
                         <Plus size={14} />
@@ -81,7 +81,7 @@ export default function CartDrawer({
 
                   <button
                     onClick={() => removeFromCart(item._id)}
-                    className="text-xs font-semibold text-green-600 hover:text-green-700"
+                    className="text-xs font-semibold text-gray-800 hover:text-black"
                   >
                     Remove
                   </button>
@@ -91,8 +91,8 @@ export default function CartDrawer({
           )}
         </div>
 
-        <div className="px-6 py-5 border-t border-green-100 shrink-0">
-          <div className="flex items-center justify-between font-semibold text-green-950 mb-4">
+        <div className="px-6 py-5 border-t border-gray-300 bg-gray-100 shrink-0">
+          <div className="flex items-center justify-between font-semibold text-gray-900 mb-4">
             <span>Subtotal</span>
             <span>PKR {total.toFixed(2)}</span>
           </div>
@@ -100,7 +100,7 @@ export default function CartDrawer({
             <Link
               href="/cart"
               onClick={onClose}
-              className="w-full text-center rounded-full border border-green-200 py-3 font-semibold text-green-900 hover:border-green-400 transition"
+              className="w-full text-center rounded-full border border-gray-500 bg-gray-200 py-3 font-semibold text-gray-900 hover:border-gray-700 hover:bg-gray-300 transition"
             >
               View Cart
             </Link>
@@ -117,4 +117,3 @@ export default function CartDrawer({
     </div>
   );
 }
-
